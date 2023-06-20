@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
       ),
       localizationsDelegates: const [
         //GlobalMaterialLocalizations.delegate,
-        //GlobalCupertinoLocalizations.delegate
+        //GlobalCupertinoLocalizations.delegate   --------------------JESUS VERA PARRA
       ],
     );
   }
