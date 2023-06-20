@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/provider/ingreso_provider.dart';
 import 'package:flutter_application_1/style/custom_inputs.dart';
+import 'package:flutter_application_1/util/util_view.dart';
 
 Future dialogAbono(BuildContext context, IngresoProvider provider) async {
   await showDialog(
@@ -29,6 +30,7 @@ Future dialogAbono(BuildContext context, IngresoProvider provider) async {
                 ],
               ),
               content: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   const Text('Saldo: 4.00'),
                   Row(children: [
@@ -46,7 +48,17 @@ Future dialogAbono(BuildContext context, IngresoProvider provider) async {
               actions: [
                 TextButton.icon(
                   onPressed: () async {
-                    Navigator.of(context).pop();
+                    try {
+                      double valSaldo = double.parse(provider.txtSaldo.text);
+                      double valAbonado = double.parse(provider.txtAbono.text);
+                      if (valAbonado <= valSaldo) {
+                        Navigator.of(context).pop();
+                      } else {
+                        UtilView.messageDanger("Error");
+                      }
+                    } catch (e) {
+                      print(e);
+                    }
                   },
                   icon: const Icon(Icons.check_circle_outline,
                       color: Colors.green),
