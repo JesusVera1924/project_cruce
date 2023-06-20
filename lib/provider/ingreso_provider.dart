@@ -12,6 +12,9 @@ class IngresoProvider extends ChangeNotifier {
   final txtValor = TextEditingController();
   final txtSaldo = TextEditingController();
 
+  //dialogo
+  final txtAbono = TextEditingController();
+
   Cc0020? cabecera;
   List<Cc0020> listDetail = [];
   List<Cc0020> listselectFact = [];

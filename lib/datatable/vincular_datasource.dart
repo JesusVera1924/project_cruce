@@ -1,5 +1,6 @@
 import 'package:flutter_application_1/model/cc0020.dart';
 import 'package:flutter_application_1/provider/ingreso_provider.dart';
+import 'package:flutter_application_1/util/dialog_abono.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:flutter/material.dart';
 
@@ -94,8 +95,9 @@ class VincularDTS extends DataGridSource {
         padding: const EdgeInsets.all(8.0),
         alignment: Alignment.center,
         child: InkWell(
-            onTap: () {
-              provider.removerCuenta(row.getCells()[5].value);
+            onTap: () async {
+              provider.txtAbono.text = row.getCells()[3].value.toString();
+              await dialogAbono(context, provider);
             },
             child: const Icon(Icons.add, color: Colors.black)),
       ),
