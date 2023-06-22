@@ -42,6 +42,17 @@ Future dialogAbono(BuildContext context, IngresoProvider provider) async {
                               hint: 'Valor', icon: Icons.numbers),
                           keyboardType: TextInputType.number),
                     ),
+                  ]),
+                  const SizedBox(height: 18),
+                  Row(children: [
+                    const Text('Observación:'),
+                    Expanded(
+                      child: TextFormField(
+                          controller: provider.txtObservacion,
+                          decoration: CustomInputs.boxInputDecoration2(
+                              hint: 'Obs', icon: Icons.abc),
+                          keyboardType: TextInputType.text),
+                    ),
                   ])
                 ],
               ),

@@ -14,6 +14,7 @@ class IngresoProvider extends ChangeNotifier {
 
   //dialogo
   final txtAbono = TextEditingController();
+  final txtObservacion = TextEditingController();
 
   Cc0020? cabecera;
   List<Cc0020> listDetail = [];
@@ -27,6 +28,7 @@ class IngresoProvider extends ChangeNotifier {
     txtTipoNGoNC.clear();
     txtSaldo.clear();
     txtValor.clear();
+    txtObservacion.clear();
   }
 
   Future<String> getNombre(String codigo) async {

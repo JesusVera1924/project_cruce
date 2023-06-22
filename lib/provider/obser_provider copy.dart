@@ -13,21 +13,44 @@ class ObservacionProvider extends ChangeNotifier {
     notifyListeners();
   }
 
- /* saveCc0753(
+ saveCc0020(
       String observacion, String vendedor, DateTime fecha, String hora) async {
     obj = Cc0020(
         codEmp: "01",
-        rvcAct: vendedor,
-        fecAct: fecha,
-        hraAct: hora,
-        obsAct: observacion,
-        fytAct: DateTime.now().add(const Duration(hours: -5)),
-        srsAct: "p",
-        stsAct: "P");
+        codRef: vendedor,
+        codPto: "",
+        codMov: hora,
+        numMov: observacion,
+        ptoRel: "",
+        codRel: "p",
+        numRel: "P",
+        fecEmi: DateTime.now(),
+        fecVen: DateTime.now(),
+        valMov: 0,
+        sdoMov: 0,
+        codCob: "",
+        codBco: "",
+        numCta: "",
+        nunCta: "",
+        girador: "",
+        obsMov: "",
+        ptoNex: "",
+        codNex: "",
+        numNex: "",
+        fecNex: DateTime.now(),
+        fcrNex: "",
+        ncrNex: "",
+        codDiv: "",
+        cotDiv: 0,
+        scsMov: "",
+        sosMov: "",
+        stsMov: ""
+
+        );
 
     await api.postComentario(obj);
 
     listObservacion.add(obj);
     notifyListeners();
-  }*/
+  }
 }
