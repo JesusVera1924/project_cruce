@@ -12,7 +12,7 @@ import 'package:flutter_application_1/util/util_view.dart';
 import 'package:http/http.dart' as http;
 
 class RutasApi {
-  static String urlBase = "192.168.3.4:8082";
+  static String urlBase = "192.168.3.56:8084";
   static String pathBase = "/contabilidad";
   static String pathBase2 = "/desarrollosolicitud";
 
