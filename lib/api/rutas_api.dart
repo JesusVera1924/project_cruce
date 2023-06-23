@@ -201,6 +201,26 @@ class RutasApi {
     return resul;
   }
 
+  Future<String> postCc0020(Cc0020 cc0020) async {
+    String resp = "0";
+    var url = Uri.http(urlBase, '$pathBase/insertCc020');
+
+    var data = cc0020.toJson();
+
+    final resquet = await http.post(url, body: data, headers: {
+      "Content-type": "application/json;charset=UTF-8",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": "true",
+    });
+
+    if (resquet.statusCode == 200) {
+      resp = resquet.body;
+    } else {
+      throw Exception('Error de formulario,: ${resquet.statusCode}');
+    }
+    return resp;
+  }
+
   List<Cc0020> parseModelCc0020(String respuesta) {
     final parseo = jsonDecode(respuesta);
     return parseo.map<Cc0020>((json) => Cc0020.fromMap(json)).toList();
