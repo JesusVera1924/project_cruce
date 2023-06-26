@@ -106,6 +106,23 @@ class RutasApi {
     return resp;
   }
 
+  Future<String> putCg0020(Cc0020 datos) async {
+    var url = Uri.http(urlBase, '$pathBase/updateStoMov');
+    final resquet = await http.post(url, body: datos, headers: {
+      "Content-type": "application/json;charset=UTF-8",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": "true",
+    });
+    String resp; // Declare and initialize the variable
+
+    if (resquet.statusCode == 200) {
+      resp = resquet.body;
+    } else {
+      throw Exception('Error de formulario: ${resquet.statusCode}');
+    }
+    return resp;
+  }
+
   //print(data);
 
   List<Mg0030> parseObservaciones(String respuesta) {
