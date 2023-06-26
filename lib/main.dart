@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/provider/check_provider.dart';
 import 'package:flutter_application_1/provider/ingreso_provider.dart';
 import 'package:flutter_application_1/provider/login_provider.dart';
-import 'package:flutter_application_1/provider/obser_provider.dart';
+import 'package:flutter_application_1/provider/cc0020_provider.dart';
 import 'package:flutter_application_1/router/routes.dart';
 
 import 'package:provider/provider.dart';
