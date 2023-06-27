@@ -46,17 +46,16 @@ class ObservacionProvider extends ChangeNotifier {
         sosMov: "",
         stsMov: "");
 
-    await api.postComentario(obj);
+    await api.postCc0020(obj);
 
     listObservacion.add(obj);
     notifyListeners();
   }
 
-  Future<bool> save() async {
+  Future<bool> update() async {
     try {
-      final list = await api.postCc0020(obj);
-      // facturas.clear();
-      //tempfacturas = list;
+      final list = await api.UpdateSto(obj);
+  
       notifyListeners();
       UtilView.messageAccess("Cruce realizado con exito", Colors.blue);
       return list.isNotEmpty;

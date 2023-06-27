@@ -96,6 +96,7 @@ class VincularDTS extends DataGridSource {
         alignment: Alignment.center,
         child: InkWell(
             onTap: () async {
+              provider.txtSld.text = row.getCells()[2].value.toString();
               provider.txtAbono.text = row.getCells()[3].value.toString();
               await dialogAbono(context, provider);
             },

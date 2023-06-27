@@ -24,45 +24,6 @@ class ObservacionProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  saveCc0020(
-      String observacion, String vendedor, DateTime fecha, String hora) async {
-    obj = Cc0020(
-        codEmp: "01",
-        codRef: vendedor,
-        codPto: "",
-        codMov: hora,
-        numMov: observacion,
-        ptoRel: "",
-        codRel: "p",
-        numRel: "P",
-        fecEmi: DateTime.now(),
-        fecVen: DateTime.now(),
-        valMov: 0,
-        sdoMov: 0,
-        codCob: "",
-        codBco: "",
-        numCta: "",
-        nunCta: "",
-        girador: "",
-        obsMov: "",
-        ptoNex: "",
-        codNex: "",
-        numNex: "",
-        fecNex: DateTime.now(),
-        fcrNex: "",
-        ncrNex: "",
-        codDiv: "",
-        cotDiv: 0,
-        scsMov: "",
-        sosMov: "",
-        stsMov: "");
-
-    await api.postComentario(obj);
-
-    listObservacion.add(obj);
-    notifyListeners();
-  }
-
   Future<bool> save() async {
     try {
       final list = await api.postCc0020(obj);
@@ -80,7 +41,7 @@ class ObservacionProvider extends ChangeNotifier {
   Future update() async {
     if (validateForm()) {
       try {
-        cc0020.codEmp = "01";
+/*         cc0020.codEmp = "01";
         cc0020.codRef = "";
         cc0020.codPto = "";
         cc0020.codMov = "DX";
@@ -104,8 +65,8 @@ class ObservacionProvider extends ChangeNotifier {
         cc0020.fecNex = DateTime.now();
         cc0020.codDiv = "girador";
         cc0020.cotDiv = 1;
-        cc0020.stsMov = "";
-        bool op = (await api.putCg0020(cc0020)) as bool;
+        cc0020.stsMov = ""; */
+        bool op = (await api.postCc0020(cc0020)) as bool;
         if (op) {
           // Code to handle successful operation
         }
@@ -125,4 +86,6 @@ class ObservacionProvider extends ChangeNotifier {
       return false;
     }
   }
+
+
 }
