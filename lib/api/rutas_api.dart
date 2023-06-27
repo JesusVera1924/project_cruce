@@ -12,7 +12,7 @@ import 'package:flutter_application_1/util/util_view.dart';
 import 'package:http/http.dart' as http;
 
 class RutasApi {
-  static String urlBase = "192.168.3.56:8084";
+  static String urlBase = "192.168.3.5:8080";
   static String pathBase = "/contabilidad";
   static String pathBase2 = "/desarrollosolicitud";
 
@@ -106,7 +106,7 @@ class RutasApi {
     return resp;
   }
 
-  Future<String> putCg0020(Cc0020 datos) async {
+  Future<String> UpdateSto(Cc0020 datos) async {
     var url = Uri.http(urlBase, '$pathBase/updateStoMov');
     final resquet = await http.post(url, body: datos, headers: {
       "Content-type": "application/json;charset=UTF-8",
@@ -238,6 +238,44 @@ class RutasApi {
     return resp;
   }
 
+    Future<String> postListaCc0020(Cc0020 cc0020) async {
+    String resp = "0";
+    var url = Uri.http(urlBase, '$pathBase/insertCc020');
+
+    var data = cc0020.toJson();
+
+    final resquet = await http.post(url, body: data, headers: {
+      "Content-type": "application/json;charset=UTF-8",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": "true",
+    });
+
+    if (resquet.statusCode == 200) {
+      resp = resquet.body;
+    } else {
+      throw Exception('Error de formulario,: ${resquet.statusCode}');
+    }
+    return resp;
+  }
+    Future updateCruceCuenta(String codEmp, String numMov, String stsMov) async {
+    final data = {
+      "cod_emp": "01",
+      "num_mov": numMov,
+      "sts_mov": stsMov,
+    };
+
+    var bod = json.encode(data);
+    final resquet = await http
+        .post(Uri.http(urlBase, '$pathBase/uploadAbono'), body: bod, headers: {
+      "Content-type": "application/json;charset=UTF-8",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": "true",
+    });
+    if (resquet.statusCode != 200) {
+      throw Exception('Error de actualización : ${resquet.statusCode}');
+    }
+  }
+
   List<Cc0020> parseModelCc0020(String respuesta) {
     final parseo = jsonDecode(respuesta);
     return parseo.map<Cc0020>((json) => Cc0020.fromMap(json)).toList();
@@ -288,32 +326,7 @@ class RutasApi {
     return parseo.map<Mg0001>((json) => Mg0001.fromMap(json)).toList();
   }
 
-  Future<String> sendMailerDocument(
-      String numero, String name, String base) async {
-    var url = Uri.http(urlBase, '$pathBase/sendCorreoR');
-    var data = SendMaileRuta(
-            numRef: numero,
-            codRef: UtilView.codigoNombre,
-            nomRef: UtilView.nombreVen,
-            name: name,
-            body: base)
-        .toJson();
-    try {
-      final resquet = await http.post(url, body: data, headers: {
-        "Content-type": "application/json;charset=UTF-8",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": "true",
-      });
 
-      if (resquet.statusCode != 200) {
-        throw Exception('Error de formulario,: ${resquet.statusCode}');
-      } else {
-        return resquet.body;
-      }
-    } catch (e) {
-      throw ('error el en GET: $e');
-    }
-  }
 
   Future<List<Cc0751>> getCc0751List(String vendedor) async {
     List<Cc0751> resul = [];

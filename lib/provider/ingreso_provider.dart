@@ -13,8 +13,12 @@ class IngresoProvider extends ChangeNotifier {
   final txtSaldo = TextEditingController();
 
   //dialogo
+  final txtSld = TextEditingController();
   final txtAbono = TextEditingController();
+  final txtSaldoAc = TextEditingController();
+
   final txtObservacion = TextEditingController();
+  double saldoAc = 0;
 
   Cc0020? cabecera;
   List<Cc0020> listDetail = [];
@@ -53,6 +57,17 @@ class IngresoProvider extends ChangeNotifier {
 
   Future removerCuenta(Cc0020 c) async {
     listselectFact.remove(c);
+    notifyListeners();
+  }
+
+  void calculateAbono() {
+    if (txtSaldoAc.text != "") {
+      // ignore: unused_local_variable
+      saldoAc = double.parse(txtSld.text.replaceAll(',', '.')) -
+          double.parse(txtAbono.text.replaceAll(',', '.'));
+    } else {
+      txtAbono.text = "0.0";
+    }
     notifyListeners();
   }
 }
